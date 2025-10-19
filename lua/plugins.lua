@@ -133,7 +133,7 @@ return {
         end,
     },
 
-    -- noice (ui for cmdlin, popup menu, messages)
+    -- ui for cmdlin, popup menu, messages
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -163,7 +163,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
     },
 
-    -- which-key (shows possible leader commands)
+    -- show possible leader commands
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -182,13 +182,18 @@ return {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
 
-    -- indent lines
+    -- show indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         ---@module "ibl"
         ---@type ibl.config
         opts = {},
+    },
+
+    -- git wrapper
+    {
+        "tpope/vim-fugitive",
     },
 
     -- LSP config
@@ -209,7 +214,7 @@ return {
         end,
     },
 
-    -- mason (LSP servers)
+    -- LSP package manager
     {
         "mason-org/mason-lspconfig.nvim",
         dependencies = {
