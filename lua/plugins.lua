@@ -48,7 +48,7 @@ return {
     -- telescope (fuzzy find)
     {
         {
-            'nvim-telescope/telescope.nvim', 
+            'nvim-telescope/telescope.nvim',
             config = function()
                 local builtin = require('telescope.builtin')
                 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -194,6 +194,50 @@ return {
     -- git wrapper
     {
         "tpope/vim-fugitive",
+    },
+
+    -- treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "nvim-treesitter/playground",
+            "nvim-treesitter/nvim-treesitter-context",
+        },
+        build = ":TSUpdate",
+        opts = {
+            indent = { enable = true }, ---@type lazyvim.TSFeat
+            highlight = { enable = true }, ---@type lazyvim.TSFeat
+            folds = { enable = true }, ---@type lazyvim.TSFeat
+            ensure_installed = {
+                "bash",
+                "c",
+                "diff",
+                "html",
+                "javascript",
+                "jsdoc",
+                "json",
+                "jsonc",
+                "lua",
+                "luadoc",
+                "luap",
+                "markdown",
+                "markdown_inline",
+                "printf",
+                "python",
+                "query",
+                "regex",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "xml",
+                "yaml",
+                "rust",
+            },
+        }
     },
 
     -- LSP config

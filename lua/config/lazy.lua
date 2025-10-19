@@ -18,18 +18,21 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.termguicolors = true
+vim.opt.wrap = false
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
 vim.keymap.set("n", "<leader>p", "<cmd>wincmd p<CR>", { silent = true, noremap = true })
-vim.opt.wrap = false
+vim.keymap.set("n", "gd", "<C-]>", { silent = true, noremap = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
