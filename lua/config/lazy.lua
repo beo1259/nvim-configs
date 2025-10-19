@@ -35,6 +35,10 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.keymap.set("n", "<leader>p", "<cmd>wincmd p<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "gd", "<C-]>", { silent = true, noremap = true })
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "bdp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "bdo", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({

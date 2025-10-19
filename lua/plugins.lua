@@ -280,4 +280,18 @@ return {
             automatic_installation = true,
         },
     },
+
+    -- buffer line
+    {
+        "akinsho/bufferline.nvim",
+        opts = { },
+    },
+
+    -- scrollbar
+    {
+        "petertriho/nvim-scrollbar",
+        config = function()
+            require("scrollbar").setup({ })
+        end
+    },
 }
