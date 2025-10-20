@@ -9,7 +9,8 @@ return {
             require("everforest").setup({
                 background = "hard",
                 diagnostic_text_highlight = true,
-                diagnostic_virtual_text = "colored"
+                diagnostic_virtual_text = "colored",
+                diagnostic_line_highlight = 1,
             })
         vim.cmd.colorscheme("everforest")
         end,
@@ -188,6 +189,11 @@ return {
             })
         end,
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+
+    {
+        "rcarriga/nvim-notify",
+        opts = {},
     },
 
     -- show possible leader commands

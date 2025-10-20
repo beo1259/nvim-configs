@@ -40,6 +40,15 @@ vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { silent = true, norema
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = vim.api.nvim_create_augroup('highlight_yank', {}),
+    desc = 'Hightlight selection on yank',
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150 }
+    end,
+})
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
