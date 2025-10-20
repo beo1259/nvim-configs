@@ -37,8 +37,8 @@ vim.keymap.set("n", "<leader>p", "<cmd>wincmd p<CR>", { silent = true, noremap =
 vim.keymap.set("n", "gd", "<C-]>", { silent = true, noremap = true })
 vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "bdp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "bdo", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -48,7 +48,7 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+ install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false },
 })

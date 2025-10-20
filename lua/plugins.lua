@@ -113,25 +113,25 @@ return {
 
                     ["<C-Space>"] = cmp.mapping.complete(),
 
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                      if cmp.visible() then
-                        cmp.select_next_item()
-                      elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                      else
-                        fallback()
-                      end
-                    end, { "i", "s" }),
-
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                      if cmp.visible() then
-                        cmp.select_prev_item()
-                      elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                      else
-                        fallback()
-                      end
-                    end, { "i", "s"}),
+                    -- ["<Tab>"] = cmp.mapping(function(fallback)
+                    --   if cmp.visible() then
+                    --     cmp.select_next_item()
+                    --   elseif luasnip.expand_or_jumpable() then
+                    --     luasnip.expand_or_jump()
+                    --   else
+                    --     fallback()
+                    --   end
+                    -- end, { "i", "s" }),
+                    --
+                    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    --   if cmp.visible() then
+                    --     cmp.select_prev_item()
+                    --   elseif luasnip.jumpable(-1) then
+                    --     luasnip.jump(-1)
+                    --   else
+                    --     fallback()
+                    --   end
+                    -- end, { "i", "s"}),
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },  -- LSP
@@ -195,7 +195,7 @@ return {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
-            preset = "helix"
+            preset = "helix",
         },
         keys = {
             {
@@ -277,10 +277,6 @@ return {
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
-                float = {
-                    border = "rounded",
-                    source = "always",
-                },
             })
         end,
     },
@@ -304,7 +300,6 @@ return {
                 "csharp_ls",
                 "clangd",
             },
-            automatic_installation = true,
         },
     },
 
