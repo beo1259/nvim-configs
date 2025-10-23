@@ -1,3 +1,5 @@
+local vim = vim
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -13,6 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
@@ -37,8 +40,17 @@ vim.keymap.set("n", "<leader>p", "<cmd>wincmd p<CR>", { silent = true, noremap =
 vim.keymap.set("n", "gd", "<C-]>", { silent = true, noremap = true })
 vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineMoveNext<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineMovePrev<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bcp", "<cmd>BufferLinePickClose<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { silent = true, noremap = true })
+vim.keymap.set("x", ">", ">gv", { noremap = true, silent = true })
+vim.keymap.set("x", "<", "<gv", { noremap = true, silent = true })
+
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = vim.api.nvim_create_augroup('highlight_yank', {}),

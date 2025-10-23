@@ -1,3 +1,5 @@
+local vim = vim
+
 return {
     -- color scheme
     {
@@ -322,4 +324,17 @@ return {
             require("scrollbar").setup({ })
         end
     },
+
+    -- save and reopen previous session
+    {
+        "rmagatti/auto-session",
+        lazy = false,
+
+        ---enables autocomplete for opts
+        ---@module "auto-session"
+        ---@type AutoSession.Config
+        opts = {
+            suppressed_dirs = { "~/repos"},
+        },
+    }
 }
