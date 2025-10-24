@@ -1,5 +1,3 @@
-local vim = vim
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -48,6 +46,8 @@ vim.keymap.set("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { silent = tr
 vim.keymap.set("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { silent = true, noremap = true })
 vim.keymap.set("x", ">", ">gv", { noremap = true, silent = true })
 vim.keymap.set("x", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 
 vim.cmd('autocmd BufEnter * set formatoptions-=cro')
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')

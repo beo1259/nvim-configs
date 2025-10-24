@@ -1,20 +1,28 @@
-local vim = vim
-
 return {
     -- color scheme
+    -- {
+    --     "neanias/everforest-nvim",
+    --     version = false,
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("everforest").setup({
+    --             background = "hard",
+    --             diagnostic_text_highlight = true,
+    --             diagnostic_virtual_text = "colored",
+    --             diagnostic_line_highlight = 1,
+    --         })
+    --      vim.cmd.colorscheme("everforest")
+    --     end,
+    -- },
+
     {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
+        "ellisonleao/gruvbox.nvim",
         priority = 1000,
+        opts = { },
         config = function()
-            require("everforest").setup({
-                background = "hard",
-                diagnostic_text_highlight = true,
-                diagnostic_virtual_text = "colored",
-                diagnostic_line_highlight = 1,
-            })
-        vim.cmd.colorscheme("everforest")
+            vim.o.background = "dark"
+            vim.cmd.colorscheme("gruvbox")
         end,
     },
 
@@ -163,7 +171,7 @@ return {
         end,
     },
 
-    -- ui for cmdlin, popup menu, messages
+    -- ui for cmdline, popup menu, search
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -177,9 +185,8 @@ return {
                       ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
                     },
                 },
-                -- you can enable a preset for easier configuration
                 presets = {
-                    bottom_search = true, -- use a classic bottom cmdline for search
+                    bottom_search = false, -- use a classic bottom cmdline for search
                     command_palette = true, -- position the cmdline and popupmenu together
                     long_message_to_split = true, -- long messages will be sent to a split
                     inc_rename = false, -- enables an input dialog for inc-rename.nvim
@@ -187,6 +194,14 @@ return {
                 },
                 cmdline = {
                     view = "cmdline_popup",
+                },
+                views = {
+                    cmdline_popup = {
+                        position = {
+                            row = "40%",
+                            col = "50%",
+                        }
+                    }
                 }
             })
         end,
@@ -195,7 +210,9 @@ return {
 
     {
         "rcarriga/nvim-notify",
-        opts = {},
+        opts = {
+            timeout = 1000,
+        },
     },
 
     -- show possible leader commands
@@ -336,5 +353,70 @@ return {
         opts = {
             suppressed_dirs = { "~/repos"},
         },
+    },
+
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- Library paths can be absolute
+          "~/projects/my-awesome-lib",
+          -- Or relative, which means they will be resolved from the plugin dir.
+          "lazy.nvim",
+          -- It can also be a table with trigger words / mods
+          -- Only load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          -- always load the LazyVim library
+          "LazyVim",
+          -- Only load the lazyvim library when the `LazyVim` global is found
+          { path = "LazyVim", words = { "LazyVim" } },
+          -- Load the wezterm types when the `wezterm` module is required
+          -- Needs `DrKJeff16/wezterm-types` to be installed
+          { path = "wezterm-types", mods = { "wezterm" } },
+          -- Load the xmake types when opening file named `xmake.lua`
+          -- Needs `LelouchHe/xmake-luals-addon` to be installed
+          { path = "xmake-luals-addon/library", files = { "xmake.lua" } },
+        },
+        -- always enable unless `vim.g.lazydev_enabled = false`
+        -- This is the default
+        enabled = function(root_dir)
+          return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
+        end,
+        -- disable when a .luarc.json file is found
+        enabled = function(root_dir)
+          return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+        end,
+      },
+    },
+
+    -- code actions
+    {
+        "rachartier/tiny-code-action.nvim",
+        dependencies = {
+            {"nvim-lua/plenary.nvim"},
+
+            -- optional picker via telescope
+            {"nvim-telescope/telescope.nvim"},
+            -- optional picker via fzf-lua
+            {"ibhagwan/fzf-lua"},
+            -- .. or via snacks
+            {
+              "folke/snacks.nvim",
+              opts = {
+                terminal = {},
+              }
+            }
+        },
+        event = "LspAttach",
+        opts = {},
+        config = function()
+            vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+                require("tiny-code-action").code_action({})
+                vim.defer_fn(function()
+                    vim.api.nvim_input("<Esc>")
+                end, 50)
+            end, { noremap = true, silent = true })
+        end,
     }
 }
