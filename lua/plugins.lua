@@ -288,6 +288,7 @@ return {
                 "xml",
                 "yaml",
                 "rust",
+                "latex",
             },
         }
     },
@@ -324,6 +325,11 @@ return {
                 "cssls",
                 "csharp_ls",
                 "clangd",
+                "markdown",
+                "markdown_inline",
+                "latex",
+                "typst",
+                "yaml",
             },
         },
     },
@@ -418,5 +424,14 @@ return {
                 end, 50)
             end, { noremap = true, silent = true })
         end,
-    }
+    },
+
+    -- mardown preview
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        markdown = {
+
+        }
+    },
 }
