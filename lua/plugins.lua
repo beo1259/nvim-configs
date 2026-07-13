@@ -248,6 +248,17 @@ return {
         "tpope/vim-fugitive",
     },
 
+    {
+        "vim-python/python-syntax",
+        ft = "python",
+        config = function()
+            vim.g.python_highlight_all = 1
+            -- optional extras:
+            -- vim.g.python_highlight_space_errors = 0
+            -- vim.g.python_highlight_exceptions = 1
+        end,
+    },
+
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -260,7 +271,10 @@ return {
         build = ":TSUpdate",
         opts = {
             indent = { enable = true }, ---@type lazyvim.TSFeat
-            highlight = { enable = true }, ---@type lazyvim.TSFeat
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = { "python" },
+            }, ---@type lazyvim.TSFeat
             folds = { enable = true }, ---@type lazyvim.TSFeat
             ensure_installed = {
                 "bash",
@@ -325,11 +339,12 @@ return {
                 "cssls",
                 "csharp_ls",
                 "clangd",
-                "markdown",
-                "markdown_inline",
-                "latex",
-                "typst",
-                "yaml",
+                -- "python-lsp-server"
+                -- "markdown",
+                -- "markdown_inline",
+                -- "latex",
+                -- "typst",
+                -- "yaml",
             },
         },
     },
