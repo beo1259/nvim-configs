@@ -265,7 +265,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
-            "nvim-treesitter/playground",
+            --"nvim-treesitter/playground",
             "nvim-treesitter/nvim-treesitter-context",
         },
         build = ":TSUpdate",
@@ -337,7 +337,7 @@ return {
                 "gopls",
                 "rust_analyzer",
                 "cssls",
-                "csharp_ls",
+                --"csharp_ls",
                 "clangd",
                 -- "python-lsp-server"
                 -- "markdown",
@@ -441,7 +441,7 @@ return {
         end,
     },
 
-    -- mardown preview
+    -- mardown previewers
     {
         "OXY2DEV/markview.nvim",
         lazy = false,
@@ -449,4 +449,19 @@ return {
 
         }
     },
+    {
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      ft = { "markdown" },
+      build = function() vim.fn["mkdp#util#install"]() end,
+      keys = {
+        { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Browser Preview" },
+      },
+      config = function()
+        -- Optional settings
+        vim.g.mkdp_auto_start = 0     -- Set to 1 to open the browser automatically on file open
+        vim.g.mkdp_auto_close = 1     -- Automatically close the browser tab when closing the buffer
+        vim.g.mkdp_refresh_slow = 0   -- 0 means real-time preview sync while typing
+      end,
+    }
 }
