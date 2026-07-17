@@ -442,13 +442,13 @@ return {
     },
 
     -- mardown previewers
-    {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
-        markdown = {
-
-        }
-    },
+    -- {
+    --     "OXY2DEV/markview.nvim",
+    --     lazy = false,
+    --     markdown = {
+    --
+    --     }
+    -- },
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
