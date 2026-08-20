@@ -331,14 +331,14 @@ return {
         opts = {
             ensure_installed = {
                 "lua_ls",
-                "ts_ls",
+                -- "ts_ls",
                 "pyright",
-                "html",
-                "gopls",
-                "rust_analyzer",
-                "cssls",
+                -- "html",
+                -- "gopls",
+                -- "rust_analyzer",
+                -- "cssls",
                 --"csharp_ls",
-                "clangd",
+                -- "clangd",
                 -- "python-lsp-server"
                 -- "markdown",
                 -- "markdown_inline",
